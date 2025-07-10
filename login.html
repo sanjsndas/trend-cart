@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | TrendCart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reusing the same CSS from contact.html for consistency */
+        :root {
+            --primary: #FF5E5B;
+            --black: #000000;
+            --white: #FFFFFF;
+            --accent: #FFFF00;
+            --gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #ff3c38;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Header & Navigation (same as contact.html) */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        /* Cart Dropdown (same as contact.html) */
+        .cart-dropdown {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 350px;
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            z-index: 10;
+            display: none;
+        }
+        
+        .cart-dropdown.active {
+            display: block;
+        }
+        
+        /* Login Page Specific Styles */
+        .login-hero {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .login-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .login-container {
+            max-width: 500px;
+            margin: 0 auto 60px;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+        }
+        
+        .forgot-password {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .login-options {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .login-options::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .login-options span {
+            background-color: var(--white);
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+            color: #777;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .facebook {
+            background-color: #3b5998;
+        }
+        
+        .google {
+            background-color: #db4437;
+        }
+        
+        .apple {
+            background-color: #000000;
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .signup-link a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+        }
+        
+        /* Footer (same as contact.html) */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-contact p {
+            color: #ccc;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .login-hero h1 {
+                font-size: 36px;
+            }
+            
+            .login-container {
+                padding: 30px;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-dropdown {
+                width: 280px;
+            }
+            
+            .social-login {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Trend<span>Cart</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="active">Login</a></li>
+                    <li>
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                            <div class="cart-dropdown">
+                                <div class="cart-header">
+                                    <h4>Your Cart</h4>
+                                    <span class="close-cart"><i class="fas fa-times"></i></span>
+                                </div>
+                                <div class="cart-items">
+                                    <!-- Cart items will be added here dynamically -->
+                                </div>
+                                <div class="cart-total">
+                                    <span>Total:</span>
+                                    <span class="total-price">$0.00</span>
+                                </div>
+                                <div class="cart-actions">
+                                    <button class="btn btn-outline">View Cart</button>
+                                    <button class="btn">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Hero -->
+    <section class="login-hero">
+        <div class="container">
+            <h1>Welcome Back</h1>
+            <p>Sign in to access your TrendCart account and continue your shopping journey</p>
+        </div>
+    </section>
+
+    <!-- Login Form -->
+    <div class="container">
+        <div class="login-container">
+            <h2>Sign In to Your Account</h2>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" class="form-control" required>
+                </div>
+                
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+                
+                <div class="login-options">
+                    <span>or sign in with</span>
+                </div>
+                
+                <div class="social-login">
+                    <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-btn apple"><i class="fab fa-apple"></i></a>
+                </div>
+                
+                <div class="signup-link">
+                    Don't have an account? <a href="#" id="openSignupModal">Sign up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Create Your Account</h2>
+            
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="checkbox" id="agree-terms" required>
+                    <label for="agree-terms">I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></label>
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%; margin-top: 15px;">Create Account</button>
+                
+                <div class="login-options">
+                    <span>or sign up with</span>
+                </div>
+                
+                <div class="social-login">
+                    <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-btn apple"><i class="fab fa-apple"></i></a>
+                </div>
+                
+                <div class="signup-link" style="margin-top: 20px;">
+                    Already have an account? <a href="#" id="switchToLogin">Sign in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">TrendCart</a>
+                    <p>Your Style. Your Cart. TrendCart delivers the latest fashion trends straight to your wardrobe. Swipe, Style, Repeat with our curated collections.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Trending Now</a></li>
+                        <li><a href="#">Sneakers</a></li>
+                        <li><a href="#">Streetwear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Influencer Picks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Help</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Trend Street, Fashion District, Los Angeles, CA 90015, USA</p>
+                    <p><i class="fas fa-phone-alt"></i> +1 (800) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> support@trendcart.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM PST</p>
+                    <p><i class="fas fa-hashtag"></i> #TrendCartReady</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TrendCart. All Rights Reserved. "Your Style. Your Cart." and "Wear the Trend Before It's a Trend" are trademarks of TrendCart Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Shopping Cart Functionality (same as contact.html)
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartDropdown = document.querySelector('.cart-dropdown');
+            const closeCart = document.querySelector('.close-cart');
+            const cartItemsContainer = document.querySelector('.cart-items');
+            const cartCount = document.querySelector('.cart-count');
+            const totalPriceElement = document.querySelector('.total-price');
+            
+            let cart = [];
+            
+            // Toggle cart dropdown
+            cartIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                cartDropdown.classList.toggle('active');
+            });
+            
+            closeCart.addEventListener('click', function() {
+                cartDropdown.classList.remove('active');
+            });
+            
+            // Close cart when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!cartDropdown.contains(e.target) && e.target !== cartIcon && !cartIcon.contains(e.target)) {
+                    cartDropdown.classList.remove('active');
+                }
+            });
+            
+            // Update cart UI
+            function updateCart() {
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+                let itemCount = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    itemCount += item.quantity;
+                    
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <p class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                            <p class="remove-item" data-id="${item.id}">Remove</p>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                // Update cart count and total
+                cartCount.textContent = itemCount;
+                totalPriceElement.textContent = `$${total.toFixed(2)}`;
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+            
+            // Modal Functionality
+            const signupModal = document.getElementById('signupModal');
+            const openSignupModal = document.getElementById('openSignupModal');
+            const closeModal = document.querySelector('.close-modal');
+            const switchToLogin = document.getElementById('switchToLogin');
+            
+            // Open modal when "Sign up" link is clicked
+            openSignupModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                signupModal.classList.add('active');
+            });
+            
+            // Close modal when X is clicked
+            closeModal.addEventListener('click', function() {
+                signupModal.classList.remove('active');
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === signupModal) {
+                    signupModal.classList.remove('active');
+                }
+            });
+            
+            // Switch to login link in modal
+            switchToLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                signupModal.classList.remove('active');
+                // Here you could scroll to the login form if needed
+            });
+            
+            // Form Submissions
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                const rememberMe = document.getElementById('remember-me').checked;
+                
+                // Here you would typically validate and send to your server
+                // For this example, we'll just show an alert
+                alert(`Login attempt with email: ${email}\nRemember me: ${rememberMe ? 'Yes' : 'No'}`);
+                
+                // Reset form
+                loginForm.reset();
+            });
+            
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('signup-name').value;
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+                const confirmPassword = document.getElementById('signup-confirm-password').value;
+                
+                // Simple validation
+                if (password !== confirmPassword) {
+                    alert("Passwords don't match!");
+                    return;
+                }
+                
+                // Here you would typically validate and send to your server
+                // For this example, we'll just show an alert
+                alert(`Account created for: ${name}\nEmail: ${email}`);
+                
+                // Reset form and close modal
+                signupForm.reset();
+                signupModal.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TrendCart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reusing the same CSS from index.html for consistency */
+        :root {
+            --primary: #FF5E5B;
+            --black: #000000;
+            --white: #FFFFFF;
+            --accent: #FFFF00;
+            --gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #ff3c38;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Header & Navigation (same as index.html) */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        /* Cart Dropdown (same as index.html) */
+        .cart-dropdown {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 350px;
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            z-index: 10;
+            display: none;
+        }
+        
+        .cart-dropdown.active {
+            display: block;
+        }
+        
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .contact-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-form-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-info {
+            background-color: var(--gray);
+            padding: 40px;
+            border-radius: 8px;
+        }
+        
+        .contact-info h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .business-hours {
+            margin-top: 30px;
+        }
+        
+        .business-hours h3 {
+            margin-bottom: 15px;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-table tr {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .hours-table td {
+            padding: 8px 0;
+        }
+        
+        .hours-table td:last-child {
+            text-align: right;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--gray);
+            padding: 60px 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+        
+        .faq-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer (same as index.html) */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-contact p {
+            color: #ccc;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 36px;
+            }
+            
+            .contact-form-container,
+            .contact-info {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-dropdown {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Trend<span>Cart</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li>
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                            <div class="cart-dropdown">
+                                <div class="cart-header">
+                                    <h4>Your Cart</h4>
+                                    <span class="close-cart"><i class="fas fa-times"></i></span>
+                                </div>
+                                <div class="cart-items">
+                                    <!-- Cart items will be added here dynamically -->
+                                </div>
+                                <div class="cart-total">
+                                    <span>Total:</span>
+                                    <span class="total-price">$0.00</span>
+                                </div>
+                                <div class="cart-actions">
+                                    <button class="btn btn-outline">View Cart</button>
+                                    <button class="btn">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contact TrendCart</h1>
+            <p>We're here to help with any questions about your order, products, or account</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <div class="container">
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" class="form-control" required>
+                            <option value="" disabled selected>Select a topic</option>
+                            <option value="order">Order Inquiry</option>
+                            <option value="returns">Returns & Exchanges</option>
+                            <option value="shipping">Shipping Information</option>
+                            <option value="product">Product Questions</option>
+                            <option value="account">Account Help</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Visit Us</h3>
+                        <p>123 Trend Street<br>Fashion District<br>Los Angeles, CA 90015</p>
+                    </div>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Call Us</h3>
+                        <p>+1 (800) 123-4567<br>Mon-Fri: 9AM - 6PM PST</p>
+                    </div>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email Us</h3>
+                        <p><a href="mailto:support@trendcart.com">support@trendcart.com</a><br>Typically respond within 24 hours</p>
+                    </div>
+                </div>
+                
+                <div class="business-hours">
+                    <h3>Business Hours</h3>
+                    <table class="hours-table">
+                        <tr>
+                            <td>Monday - Friday</td>
+                            <td>9:00 AM - 6:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>10:00 AM - 4:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday</td>
+                            <td>Closed</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container faq-container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I track my order?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Once your order has shipped, you'll receive a confirmation email with a tracking number. You can track your package by clicking the tracking link in your email or by visiting the "Order Status" page in your account. Most orders are delivered within 3-5 business days in the US.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is your return policy?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept returns within 30 days of delivery for a full refund. Items must be unworn, unwashed, and in their original condition with tags attached. To initiate a return, visit the "Returns" section in your account or contact our customer service team. Final sale items are not eligible for return.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I change or cancel my order?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We process orders quickly to ensure fast delivery. If you need to change or cancel your order, please contact us immediately at <a href="mailto:support@trendcart.com">support@trendcart.com</a> with your order number. We'll do our best to accommodate your request if your order hasn't been shipped yet.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept all major credit cards (Visa, Mastercard, American Express, Discover), PayPal, Apple Pay, and Google Pay. All payments are processed securely through our encrypted payment gateway. We do not store your full credit card information on our servers.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you ship internationally?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We ship to over 100 countries worldwide. International shipping rates and delivery times vary by destination. Please note that customers are responsible for any customs fees, taxes, or duties that may apply to their order. These charges are not included in the shipping cost.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I use my discount code?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>During checkout, you'll see a field labeled "Promo Code" or "Discount Code" where you can enter your code. Click "Apply" and the discount will be reflected in your order total. If your code isn't working, please check the expiration date and any restrictions (some codes may only apply to certain products or require a minimum purchase amount).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">TrendCart</a>
+                    <p>Your Style. Your Cart. TrendCart delivers the latest fashion trends straight to your wardrobe. Swipe, Style, Repeat with our curated collections.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Trending Now</a></li>
+                        <li><a href="#">Sneakers</a></li>
+                        <li><a href="#">Streetwear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Influencer Picks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Help</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Trend Street, Fashion District, Los Angeles, CA 90015, USA</p>
+                    <p><i class="fas fa-phone-alt"></i> +1 (800) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> support@trendcart.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM PST</p>
+                    <p><i class="fas fa-hashtag"></i> #TrendCartReady</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TrendCart. All Rights Reserved. "Your Style. Your Cart." and "Wear the Trend Before It's a Trend" are trademarks of TrendCart Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Shopping Cart Functionality (same as index.html)
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartDropdown = document.querySelector('.cart-dropdown');
+            const closeCart = document.querySelector('.close-cart');
+            const cartItemsContainer = document.querySelector('.cart-items');
+            const cartCount = document.querySelector('.cart-count');
+            const totalPriceElement = document.querySelector('.total-price');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            let cart = [];
+            
+            // Toggle cart dropdown
+            cartIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                cartDropdown.classList.toggle('active');
+            });
+            
+            closeCart.addEventListener('click', function() {
+                cartDropdown.classList.remove('active');
+            });
+            
+            // Close cart when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!cartDropdown.contains(e.target) && e.target !== cartIcon && !cartIcon.contains(e.target)) {
+                    cartDropdown.classList.remove('active');
+                }
+            });
+            
+            // Update cart UI
+            function updateCart() {
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+                let itemCount = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    itemCount += item.quantity;
+                    
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <p class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                            <p class="remove-item" data-id="${item.id}">Remove</p>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                // Update cart count and total
+                cartCount.textContent = itemCount;
+                totalPriceElement.textContent = `$${total.toFixed(2)}`;
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+            
+            // FAQ Accordion Functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Contact Form Submission
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Here you would typically send the form data to your server
+                // For this example, we'll just show an alert
+                alert(`Thank you for your message, ${name}! We've received your inquiry about "${subject}" and will respond to ${email} shortly.`);
+                
+                // Reset form
+                contactForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>

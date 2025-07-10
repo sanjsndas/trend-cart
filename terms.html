@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | TrendCart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reusing the same CSS from index.html for consistency */
+        :root {
+            --primary: #FF5E5B;
+            --black: #000000;
+            --white: #FFFFFF;
+            --accent: #FFFF00;
+            --gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #ff3c38;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Header & Navigation (same as index.html) */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--black);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        /* Cart Dropdown (same as index.html) */
+        .cart-dropdown {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 350px;
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            z-index: 10;
+            display: none;
+        }
+        
+        .cart-dropdown.active {
+            display: block;
+        }
+        
+        /* Terms Specific Styles */
+        .terms-hero {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .terms-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+        
+        .terms-section {
+            margin-bottom: 40px;
+        }
+        
+        .terms-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .terms-section h3 {
+            font-size: 22px;
+            margin: 25px 0 15px;
+        }
+        
+        .terms-section p {
+            margin-bottom: 15px;
+        }
+        
+        .terms-section ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .terms-section li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background-color: var(--gray);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .update-date {
+            font-style: italic;
+            color: #777;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Footer (same as index.html) */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-contact p {
+            color: #ccc;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .terms-hero h1 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-dropdown {
+                width: 280px;
+            }
+            
+            .terms-section h2 {
+                font-size: 24px;
+            }
+            
+            .terms-section h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Trend<span>Cart</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html" class="active">Terms</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li>
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                            <div class="cart-dropdown">
+                                <div class="cart-header">
+                                    <h4>Your Cart</h4>
+                                    <span class="close-cart"><i class="fas fa-times"></i></span>
+                                </div>
+                                <div class="cart-items">
+                                    <!-- Cart items will be added here dynamically -->
+                                </div>
+                                <div class="cart-total">
+                                    <span>Total:</span>
+                                    <span class="total-price">$0.00</span>
+                                </div>
+                                <div class="cart-actions">
+                                    <button class="btn btn-outline">View Cart</button>
+                                    <button class="btn">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Terms Hero -->
+    <section class="terms-hero">
+        <div class="container">
+            <h1>Terms of Service</h1>
+            <p>Last Updated: July 15, 2023</p>
+        </div>
+    </section>
+
+    <!-- Terms Content -->
+    <div class="container terms-container">
+        <div class="terms-section">
+            <p>Welcome to TrendCart ("we," "our," or "us"). These Terms of Service ("Terms") govern your access to and use of our website <a href="https://www.trendcart.com">www.trendcart.com</a> (the "Site") and any related services, features, content, or applications offered by TrendCart (collectively, the "Services").</p>
+            
+            <p>By accessing or using our Services, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, please do not use our Services.</p>
+            
+            <div class="highlight-box">
+                <p><strong>Key Points:</strong> This summary highlights key provisions but does not substitute for reading the full Terms.</p>
+                <ul>
+                    <li>You must be at least 13 years old to use our Services</li>
+                    <li>We grant you a limited license to access and use our Site for personal, non-commercial purposes</li>
+                    <li>All content on our Site is protected by intellectual property laws</li>
+                    <li>We may modify or discontinue Services at any time without notice</li>
+                    <li>Purchases are subject to additional terms and our Return Policy</li>
+                    <li>We provide Services "as is" without warranties of any kind</li>
+                    <li>Disputes will be resolved through binding arbitration on an individual basis</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2>1. Eligibility and Account Registration</h2>
+            
+            <h3>1.1 Age Requirement</h3>
+            <p>You must be at least 13 years old to use our Services. If you are under 18, you may only use our Services with the consent and supervision of a parent or legal guardian.</p>
+            
+            <h3>1.2 Account Creation</h3>
+            <p>To access certain features, you may need to create an account. You agree to:</p>
+            <ul>
+                <li>Provide accurate, current, and complete information</li>
+                <li>Maintain and promptly update your account information</li>
+                <li>Maintain the security of your password and accept all risks of unauthorized access</li>
+                <li>Notify us immediately of any unauthorized use of your account</li>
+                <li>Be responsible for all activities that occur under your account</li>
+            </ul>
+            
+            <h3>1.3 Account Termination</h3>
+            <p>We reserve the right to suspend or terminate your account at our sole discretion if we believe you have violated these Terms or applicable laws.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>2. Use of Services</h2>
+            
+            <h3>2.1 License Grant</h3>
+            <p>Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use our Services for your personal, non-commercial use.</p>
+            
+            <h3>2.2 Prohibited Conduct</h3>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Use our Services for any illegal purpose or in violation of any laws</li>
+                <li>Violate or encourage others to violate the rights of third parties</li>
+                <li>Post, upload, or distribute any content that is unlawful, defamatory, or infringing</li>
+                <li>Attempt to interfere with or disrupt our Services</li>
+                <li>Use any data mining, robots, or similar data gathering/extraction tools</li>
+                <li>Reverse engineer, decompile, or disassemble any portion of our Services</li>
+                <li>Use our Services to advertise or solicit business without our express consent</li>
+                <li>Impersonate any person or entity or misrepresent your affiliation</li>
+                <li>Circumvent any technological measures we implement</li>
+            </ul>
+            
+            <h3>2.3 User Content</h3>
+            <p>You retain ownership of any content you submit ("User Content"), but you grant us a worldwide, royalty-free license to use, modify, and display such content in connection with our Services.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>3. Purchases and Payments</h2>
+            
+            <h3>3.1 Product Availability</h3>
+            <p>All products are subject to availability. We reserve the right to limit quantities and discontinue products at any time without notice.</p>
+            
+            <h3>3.2 Pricing and Errors</h3>
+            <p>Prices are subject to change without notice. We are not responsible for typographical errors and reserve the right to cancel orders arising from such errors.</p>
+            
+            <h3>3.3 Payment Methods</h3>
+            <p>We accept various payment methods as indicated at checkout. You represent that you have the legal right to use any payment method you provide.</p>
+            
+            <h3>3.4 Sales Tax</h3>
+            <p>We collect applicable sales tax based on the shipping destination and the taxable nature of the items purchased.</p>
+            
+            <h3>3.5 Order Acceptance</h3>
+            <p>Your order constitutes an offer to purchase. We reserve the right to refuse or cancel any order for any reason, including suspected fraud or unauthorized activity.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>4. Shipping and Returns</h2>
+            
+            <h3>4.1 Shipping Policy</h3>
+            <p>Shipping times are estimates only. We are not responsible for delays caused by carriers or events beyond our control. Risk of loss passes to you upon delivery to the carrier.</p>
+            
+            <h3>4.2 Return Policy</h3>
+            <p>Returns must be made within 30 days of receipt with proof of purchase. Items must be unworn, unwashed, and in original condition with tags attached. Final sale items are not returnable.</p>
+            
+            <h3>4.3 Refunds</h3>
+            <p>Refunds will be issued to the original payment method within 10 business days of receiving the returned item. Shipping costs are non-refundable.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>5. Intellectual Property</h2>
+            
+            <h3>5.1 Ownership</h3>
+            <p>All content on our Site, including text, graphics, logos, and software, is our property or our licensors' and is protected by copyright, trademark, and other laws.</p>
+            
+            <h3>5.2 Trademarks</h3>
+            <p>"TrendCart," our logos, and other marks are our trademarks. You may not use them without our prior written permission.</p>
+            
+            <h3>5.3 Limited License</h3>
+            <p>Subject to these Terms, you may access and view our content for personal, non-commercial use. No other use is permitted without our prior written consent.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>6. Third-Party Links and Services</h2>
+            
+            <h3>6.1 Third-Party Content</h3>
+            <p>Our Services may contain links to third-party websites or services. We do not endorse or control these third parties and are not responsible for their content or practices.</p>
+            
+            <h3>6.2 Social Media Features</h3>
+            <p>Social media features are operated by third parties. Your interactions with these features are governed by the privacy policy of the company providing them.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>7. Disclaimers and Limitation of Liability</h2>
+            
+            <h3>7.1 "As Is" Basis</h3>
+            <p>OUR SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+            
+            <h3>7.2 No Guarantees</h3>
+            <p>We do not guarantee that our Services will be uninterrupted, secure, or error-free, or that defects will be corrected.</p>
+            
+            <h3>7.3 Limitation of Liability</h3>
+            <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, TRENDCART SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM YOUR USE OF OUR SERVICES.</p>
+            
+            <h3>7.4 Jurisdictional Limitations</h3>
+            <p>Some jurisdictions do not allow the exclusion or limitation of certain damages, so the above limitations may not apply to you.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>8. Indemnification</h2>
+            <p>You agree to defend, indemnify, and hold harmless TrendCart and its affiliates from any claims, liabilities, damages, and expenses arising from:</p>
+            <ul>
+                <li>Your use of our Services</li>
+                <li>Your violation of these Terms</li>
+                <li>Your violation of any third-party rights</li>
+                <li>Any content you submit or transmit through our Services</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2>9. Dispute Resolution</h2>
+            
+            <h3>9.1 Informal Resolution</h3>
+            <p>We prefer to resolve disputes informally. Please contact us at <a href="mailto:disputes@trendcart.com">disputes@trendcart.com</a> with any concerns.</p>
+            
+            <h3>9.2 Arbitration Agreement</h3>
+            <p>Any disputes that cannot be resolved informally shall be resolved through binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules.</p>
+            
+            <h3>9.3 Class Action Waiver</h3>
+            <p>All claims must be brought in the parties' individual capacity, not as a class member in any class or representative proceeding.</p>
+            
+            <h3>9.4 Governing Law</h3>
+            <p>These Terms shall be governed by the laws of the State of California without regard to conflict of law principles.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>10. Modifications to Terms</h2>
+            <p>We may modify these Terms at any time. If we make material changes, we will notify you through our Services or by other means. Your continued use after such notice constitutes acceptance of the modified Terms.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>11. Termination</h2>
+            <p>We may terminate or suspend your access to our Services at any time without notice for any reason, including if we believe you have violated these Terms. All provisions that by their nature should survive termination shall survive.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>12. Miscellaneous</h2>
+            
+            <h3>12.1 Entire Agreement</h3>
+            <p>These Terms constitute the entire agreement between you and TrendCart regarding our Services.</p>
+            
+            <h3>12.2 Waiver</h3>
+            <p>Our failure to enforce any right or provision will not be deemed a waiver of such right or provision.</p>
+            
+            <h3>12.3 Severability</h3>
+            <p>If any provision is held invalid or unenforceable, the remaining provisions will remain in full effect.</p>
+            
+            <h3>12.4 Assignment</h3>
+            <p>You may not assign these Terms without our prior written consent. We may assign these Terms without restriction.</p>
+            
+            <h3>12.5 Force Majeure</h3>
+            <p>We shall not be liable for any failure to perform due to causes beyond our reasonable control.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>13. Contact Information</h2>
+            <p>For questions about these Terms, please contact us:</p>
+            <ul>
+                <li>By email: <a href="mailto:legal@trendcart.com">legal@trendcart.com</a></li>
+                <li>By mail: TrendCart Legal Department, 123 Trend Street, Fashion District, Los Angeles, CA 90015, USA</li>
+                <li>By phone: +1 (800) 123-4567</li>
+            </ul>
+        </div>
+
+        <div class="update-date">
+            <p>These Terms of Service were last updated on July 15, 2023.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">TrendCart</a>
+                    <p>Your Style. Your Cart. TrendCart delivers the latest fashion trends straight to your wardrobe. Swipe, Style, Repeat with our curated collections.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Trending Now</a></li>
+                        <li><a href="#">Sneakers</a></li>
+                        <li><a href="#">Streetwear</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Influencer Picks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Help</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Trend Street, Fashion District, Los Angeles, CA 90015, USA</p>
+                    <p><i class="fas fa-phone-alt"></i> +1 (800) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> support@trendcart.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM PST</p>
+                    <p><i class="fas fa-hashtag"></i> #TrendCartReady</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TrendCart. All Rights Reserved. "Your Style. Your Cart." and "Wear the Trend Before It's a Trend" are trademarks of TrendCart Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Shopping Cart Functionality (same as index.html)
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.querySelector('.cart-icon');
+            const cartDropdown = document.querySelector('.cart-dropdown');
+            const closeCart = document.querySelector('.close-cart');
+            const cartItemsContainer = document.querySelector('.cart-items');
+            const cartCount = document.querySelector('.cart-count');
+            const totalPriceElement = document.querySelector('.total-price');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            let cart = [];
+            
+            // Toggle cart dropdown
+            cartIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                cartDropdown.classList.toggle('active');
+            });
+            
+            closeCart.addEventListener('click', function() {
+                cartDropdown.classList.remove('active');
+            });
+            
+            // Close cart when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!cartDropdown.contains(e.target) && e.target !== cartIcon && !cartIcon.contains(e.target)) {
+                    cartDropdown.classList.remove('active');
+                }
+            });
+            
+            // Update cart UI
+            function updateCart() {
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+                let itemCount = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    itemCount += item.quantity;
+                    
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <p class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</p>
+                            <p class="remove-item" data-id="${item.id}">Remove</p>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                // Update cart count and total
+                cartCount.textContent = itemCount;
+                totalPriceElement.textContent = `$${total.toFixed(2)}`;
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
